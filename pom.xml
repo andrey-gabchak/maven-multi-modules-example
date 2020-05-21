@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<modules>
+		<module>core</module>
+		<module>hmi</module>
+        <module>sql</module>
+	</modules>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.gabchak</groupId>
+	<artifactId>example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>maven-multi-modules-example</name>
+	<description>Example of multi modules project in maven</description>
+
+	<properties>
+		<java.version>14</java.version>
+		<flyway.version>6.4.2</flyway.version>
+		<orika.mapper.version>1.5.4</orika.mapper.version>
+		<spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!--modules-->
+			<dependency>
+				<groupId>repositories</groupId>
+				<artifactId>com.gabchak</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>services</groupId>
+				<artifactId>com.gabchak</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>sql</groupId>
+				<artifactId>com.gabchak</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flyway.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!--Orika Mapper -->
+			<dependency>
+				<groupId>ma.glasnost.orika</groupId>
+				<artifactId>orika-core</artifactId>
+				<version>${orika.mapper.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>ROOT</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
